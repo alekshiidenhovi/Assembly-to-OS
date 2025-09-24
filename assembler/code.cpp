@@ -4,9 +4,6 @@
 
 using namespace std;
 
-/**
- * Creates a symbol table for default registers
- */
 unordered_map<string, int> create_register_symbol_table(int num_registers) {
   unordered_map<string, int> register_sym_table;
   for (size_t register_number = 0; register_number < num_registers;
@@ -17,9 +14,6 @@ unordered_map<string, int> create_register_symbol_table(int num_registers) {
   return register_sym_table;
 }
 
-/**
- * Creates a symbol table for predefined values
- */
 unordered_map<string, int> create_predefined_symbol_table() {
   return {
       {"SP", 0},   {"LCL", 1},        {"ARG", 2},          {"THIS", 3},
@@ -27,9 +21,6 @@ unordered_map<string, int> create_predefined_symbol_table() {
   };
 }
 
-/**
- * Initializes the symbol table
- * */
 unordered_map<string, int> initialize_symbol_table(int num_registers) {
   unordered_map<string, int> sym_table =
       create_register_symbol_table(num_registers);
