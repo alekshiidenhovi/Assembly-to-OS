@@ -20,12 +20,12 @@ constexpr int MAX_ADDRESS = (1 << ADDRESS_LENGTH) - 1;
 /**
  * File extension for input Hack assembly files
  */
-string ASSEMBLY_FILE_EXTENSION = ".asm";
+constexpr string ASSEMBLY_FILE_EXTENSION = ".asm";
 
 /**
  * File extension for output Hack binary files
  */
-string HACK_FILE_EXTENSION = ".hack";
+constexpr string HACK_FILE_EXTENSION = ".hack";
 
 /**
  * Hack instruction type
