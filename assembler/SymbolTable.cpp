@@ -1,10 +1,25 @@
+#include "SymbolTable.hpp"
 #include "Code.hpp"
 #include <string>
 #include <unordered_map>
 
 using namespace std;
 
-unordered_map<string, int> create_register_symbol_table(int num_registers) {
+SymbolTable::SymbolTable(int num_registers)
+    : symbol_table(initialize_symbol_table(num_registers)) {}
+
+void SymbolTable::addEntry(string symbol, int address) {
+  symbol_table.emplace(symbol, address);
+}
+
+bool SymbolTable::contains(string symbol) {
+  return symbol_table.contains(symbol);
+}
+
+int SymbolTable::getAddress(string symbol) { return symbol_table.at(symbol); }
+
+unordered_map<string, int>
+SymbolTable::create_register_symbol_table(int num_registers) {
   unordered_map<string, int> register_sym_table;
   for (size_t register_number = 0; register_number < num_registers;
        register_number++) {
@@ -14,14 +29,15 @@ unordered_map<string, int> create_register_symbol_table(int num_registers) {
   return register_sym_table;
 }
 
-unordered_map<string, int> create_predefined_symbol_table() {
+unordered_map<string, int> SymbolTable::create_predefined_symbol_table() {
   return {
       {"SP", 0},   {"LCL", 1},        {"ARG", 2},          {"THIS", 3},
       {"THAT", 4}, {"SCREEN", 16384}, {"KEYBOARD", 24576},
   };
 }
 
-unordered_map<string, int> initialize_symbol_table(int num_registers) {
+unordered_map<string, int>
+SymbolTable::initialize_symbol_table(int num_registers) {
   unordered_map<string, int> sym_table =
       create_register_symbol_table(num_registers);
   unordered_map<string, int> predefined_sym_table =

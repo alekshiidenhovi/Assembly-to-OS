@@ -5,16 +5,43 @@
 using namespace std;
 
 /**
- * Creates a symbol table for default registers
+ * Creates a symbol table, inittalized with predefined values such as register
+ * names.
  */
-unordered_map<string, int> create_register_symbol_table(int num_registers);
+class SymbolTable {
+public:
+  SymbolTable(int num_registers);
 
-/**
- * Creates a symbol table for predefined values
- */
-unordered_map<string, int> create_predefined_symbol_table();
+  /**
+   * Add symbol-address entry to the table
+   */
+  void addEntry(string symbol, int address);
 
-/**
- * Initializes the symbol table
- */
-unordered_map<string, int> initialize_symbol_table(int num_registers);
+  /**
+   * Checks whether the symbol table includes the argument symbol.
+   */
+  bool contains(string symbol);
+
+  /**
+   * Returns the address associated with the symbol.
+   */
+  int getAddress(string symbol);
+
+private:
+  /**
+   * Creates a symbol table for default registers
+   */
+  unordered_map<string, int> create_register_symbol_table(int num_registers);
+
+  /**
+   * Creates a symbol table for predefined values
+   */
+  unordered_map<string, int> create_predefined_symbol_table();
+
+  /**
+   * Initializes the symbol table
+   */
+  unordered_map<string, int> initialize_symbol_table(int num_registers);
+
+  unordered_map<string, int> symbol_table;
+};
