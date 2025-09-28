@@ -11,9 +11,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Main library
 add_library(assembly_lib
-    code.cpp
     assembler.cpp
-    parser.cpp
+    symbol_table.cpp
 )
 
 target_include_directories(assembly_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

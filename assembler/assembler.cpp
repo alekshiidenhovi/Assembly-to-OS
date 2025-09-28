@@ -1,5 +1,6 @@
-#include "code.hpp"
-#include "constants.cpp"
+#include "Constants.hpp"
+#include "Parser.hpp"
+#include "symbol_table.hpp"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -36,8 +37,13 @@ int main(int argc, char *argv[]) {
   // First pass: Complete the symbol table
   int line_number = 0;
   string instruction;
-  while (getline(src_file, instruction)) {
+  /**
+  Parser parser {};
+  while (parser.hasMoreLines()) {
+    parser.advance();
+
   }
+  */
 
   return 0;
 }
