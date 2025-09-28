@@ -1,6 +1,5 @@
-#include "Constants.hpp"
 #include "Parser.hpp"
-#include "symbol_table.hpp"
+#include "SymbolTable.hpp"
 #include <filesystem>
 #include <fstream>
 #include <iostream>

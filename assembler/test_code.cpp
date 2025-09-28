@@ -1,4 +1,4 @@
-#include "symbol_table.hpp"
+#include "SymbolTable.hpp"
 #include <cassert>
 #include <iostream>
 
