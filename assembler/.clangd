@@ -1,0 +1,8 @@
+CompileFlags:
+  CompilationDatabase: build
+#  Add:
+#    - -fmodules-ts     # enable C++20 modules
+#    - -stdlib=libc++   # optional: if you’re using libc++ instead of libstdc++
+Diagnostics:
+  UnusedIncludes: Strict
+
