@@ -8,20 +8,22 @@ using namespace std;
 SymbolTable::SymbolTable(int num_registers)
     : symbol_table(initialize_symbol_table(num_registers)) {}
 
-void SymbolTable::addEntry(string symbol, int address) {
+void SymbolTable::addEntry(const string &symbol, int address) {
   symbol_table.emplace(symbol, address);
 }
 
-bool SymbolTable::contains(string symbol) {
+bool SymbolTable::contains(const string &symbol) const {
   return symbol_table.contains(symbol);
 }
 
-int SymbolTable::getAddress(string symbol) { return symbol_table.at(symbol); }
+int SymbolTable::getAddress(const string &symbol) const {
+  return symbol_table.at(symbol);
+}
 
 unordered_map<string, int>
 SymbolTable::create_register_symbol_table(int num_registers) {
   unordered_map<string, int> register_sym_table;
-  for (size_t register_number = 0; register_number < num_registers;
+  for (int register_number = 0; register_number < num_registers;
        register_number++) {
     string register_name = "R" + to_string(register_number);
     register_sym_table[register_name] = register_number;
@@ -30,10 +32,8 @@ SymbolTable::create_register_symbol_table(int num_registers) {
 }
 
 unordered_map<string, int> SymbolTable::create_predefined_symbol_table() {
-  return {
-      {"SP", 0},   {"LCL", 1},        {"ARG", 2},          {"THIS", 3},
-      {"THAT", 4}, {"SCREEN", 16384}, {"KEYBOARD", 24576},
-  };
+  return {{"SP", 0},   {"LCL", 1},        {"ARG", 2},         {"THIS", 3},
+          {"THAT", 4}, {"SCREEN", 16384}, {"KEYBOARD", 24576}};
 }
 
 unordered_map<string, int>

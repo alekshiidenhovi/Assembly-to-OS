@@ -15,17 +15,17 @@ public:
   /**
    * Add symbol-address entry to the table
    */
-  void addEntry(string symbol, int address);
+  void addEntry(const string &symbol, int address);
 
   /**
    * Checks whether the symbol table includes the argument symbol.
    */
-  bool contains(string symbol);
+  bool contains(const string &symbol) const;
 
   /**
    * Returns the address associated with the symbol.
    */
-  int getAddress(string symbol);
+  int getAddress(const string &symbol) const;
 
 private:
   /**
