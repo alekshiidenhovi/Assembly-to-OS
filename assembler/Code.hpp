@@ -1,3 +1,5 @@
+#pragma once
+#include "Symbol.hpp"
 #include <string>
 
 using namespace std;
@@ -7,20 +9,21 @@ using namespace std;
  * binary codes.
  */
 class Code {
-private:
 public:
   /**
    * Returns the binary code of dest mnemonic
    */
-  string dest(string symbol);
+  string &dest(Symbol &symbol) const;
 
   /**
    * Returns the binary code of comp mnemonic
    */
-  string comp(string symbol);
+  string &comp(Symbol &symbol) const;
 
   /**
    * Returns the binary code of jump mnemonic
    */
-  string jump(string symbol);
+  string &jump(Symbol &symbol) const;
+
+private:
 };
