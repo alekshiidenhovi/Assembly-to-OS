@@ -12,11 +12,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Main library
 add_library(assembly_lib
     assembler.cpp
+    Symbol.cpp
     SymbolTable.cpp
 )
 
 target_include_directories(assembly_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Test executable
-add_executable(test_code test_code.cpp)
-target_link_libraries(test_code PRIVATE assembly_lib)
+add_executable(symbol_table_test test_symbol_table.cpp)
+target_link_libraries(symbol_table_test PRIVATE assembly_lib)
