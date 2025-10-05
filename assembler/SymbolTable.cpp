@@ -1,5 +1,4 @@
 #include "SymbolTable.hpp"
-#include "Code.hpp"
 #include "Symbol.hpp"
 #include <string>
 #include <unordered_map>
