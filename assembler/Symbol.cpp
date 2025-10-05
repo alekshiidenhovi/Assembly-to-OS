@@ -24,6 +24,6 @@ bool Symbol::operator!=(const Symbol &other) const noexcept {
 }
 
 bool Symbol::isValid(const string &s) {
-  static const regex pattern(R"(^[A-Za-z\.\$\:][A-Za-z\.\$\:]*$)");
+  static const regex pattern(R"(^[A-Za-z\.\$\:][A-Za-z0-9\.\$\:]*$)");
   return regex_match(s, pattern);
 }
