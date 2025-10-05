@@ -1,5 +1,5 @@
 #pragma once
-#include <string>
+#include "Symbol.hpp"
 #include <unordered_map>
 
 using namespace std;
@@ -15,33 +15,33 @@ public:
   /**
    * Add symbol-address entry to the table
    */
-  void addEntry(const string &symbol, int address);
+  void addEntry(const Symbol &symbol, int address);
 
   /**
    * Checks whether the symbol table includes the argument symbol.
    */
-  bool contains(const string &symbol) const;
+  bool contains(const Symbol &symbol) const;
 
   /**
    * Returns the address associated with the symbol.
    */
-  int getAddress(const string &symbol) const;
+  int getAddress(const Symbol &symbol) const;
 
 private:
   /**
    * Creates a symbol table for default registers
    */
-  unordered_map<string, int> create_register_symbol_table(int num_registers);
+  unordered_map<Symbol, int> create_register_symbol_table(int num_registers);
 
   /**
    * Creates a symbol table for predefined values
    */
-  unordered_map<string, int> create_predefined_symbol_table();
+  unordered_map<Symbol, int> create_predefined_symbol_table();
 
   /**
    * Initializes the symbol table
    */
-  unordered_map<string, int> initialize_symbol_table(int num_registers);
+  unordered_map<Symbol, int> initialize_symbol_table(int num_registers);
 
-  unordered_map<string, int> symbol_table_;
+  unordered_map<Symbol, int> symbol_table_;
 };
