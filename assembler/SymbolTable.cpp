@@ -6,18 +6,18 @@
 using namespace std;
 
 SymbolTable::SymbolTable(int num_registers)
-    : symbol_table(initialize_symbol_table(num_registers)) {}
+    : symbol_table_(initialize_symbol_table(num_registers)) {}
 
 void SymbolTable::addEntry(const string &symbol, int address) {
-  symbol_table.emplace(symbol, address);
+  symbol_table_.emplace(symbol, address);
 }
 
 bool SymbolTable::contains(const string &symbol) const {
-  return symbol_table.contains(symbol);
+  return symbol_table_.contains(symbol);
 }
 
 int SymbolTable::getAddress(const string &symbol) const {
-  return symbol_table.at(symbol);
+  return symbol_table_.at(symbol);
 }
 
 unordered_map<string, int>
