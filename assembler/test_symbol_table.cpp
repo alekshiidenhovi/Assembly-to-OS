@@ -18,7 +18,7 @@ int main() {
   assert(symbol_table.getAddress(Symbol("SP")) == 0);
   cout << "Table initialization tests passed!\n";
 
-  string symbol_name = "NEW_SYMBOL";
+  string symbol_name = "NEWSYMBOL";
   Symbol symbol(symbol_name);
   assert(!symbol_table.contains(symbol));
   symbol_table.addEntry(symbol, 100);
