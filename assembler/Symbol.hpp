@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include <string>
 
 using namespace std;
@@ -44,3 +45,11 @@ public:
 private:
   string name_;
 };
+
+namespace std {
+template <> struct hash<Symbol> {
+  size_t operator()(const Symbol &s) const noexcept {
+    return hash<string>()(s.str());
+  }
+};
+} // namespace std
