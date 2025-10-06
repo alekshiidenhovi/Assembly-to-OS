@@ -10,7 +10,7 @@ using namespace std;
  */
 class SymbolTable {
 public:
-  SymbolTable(int num_registers);
+  SymbolTable();
 
   /**
    * Add symbol-address entry to the table
@@ -28,20 +28,5 @@ public:
   int getAddress(const Symbol &symbol) const;
 
 private:
-  /**
-   * Creates a symbol table for default registers
-   */
-  unordered_map<Symbol, int> create_register_symbol_table(int num_registers);
-
-  /**
-   * Creates a symbol table for predefined values
-   */
-  unordered_map<Symbol, int> create_predefined_symbol_table();
-
-  /**
-   * Initializes the symbol table
-   */
-  unordered_map<Symbol, int> initialize_symbol_table(int num_registers);
-
   unordered_map<Symbol, int> symbol_table_;
 };
