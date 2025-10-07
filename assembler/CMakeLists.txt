@@ -10,15 +10,15 @@ set(CMAKE_CXX_EXTENSIONS OFF)  # enforce strict standard compliance
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Main library
-add_library(assembly_lib
+add_library(AssemblyLib
     Parser.cpp
     Symbol.cpp
     SymbolTable.cpp
 )
-target_include_directories(assembly_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(AssemblyLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(Assembler assembler.cpp)
-target_link_libraries(Assembler PRIVATE assembly_lib)
+target_link_libraries(Assembler PRIVATE AssemblyLib)
 
 add_executable(symbol_table_test test_symbol_table.cpp)
-target_link_libraries(symbol_table_test PRIVATE assembly_lib)
+target_link_libraries(symbol_table_test PRIVATE AssemblyLib)
