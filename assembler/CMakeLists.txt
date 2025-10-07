@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 4.1)
-project(AssemblyToOS LANGUAGES CXX)
+project(HackAssembler LANGUAGES CXX)
 
 # Use the latest C++ standard (C++23)
 set(CMAKE_CXX_STANDARD 23)
