@@ -1,4 +1,5 @@
 #include "Symbol.hpp"
+#include <ostream>
 #include <regex>
 #include <stdexcept>
 #include <string>
@@ -20,10 +21,14 @@ bool Symbol::operator==(const Symbol &other) const noexcept {
 }
 
 bool Symbol::operator!=(const Symbol &other) const noexcept {
-  return name_ != other.name_;
+  return !(*this == other);
 }
 
 bool Symbol::isValid(const string &s) {
   static const regex pattern(R"(^[A-Za-z_\.\$\:][A-Za-z0-9_\.\$\:]*$)");
   return regex_match(s, pattern);
+}
+
+ostream &operator<<(ostream &os, const Symbol &symbol) {
+  return os << symbol.str();
 }

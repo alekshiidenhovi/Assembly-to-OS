@@ -1,5 +1,6 @@
 #pragma once
 #include <functional>
+#include <ostream>
 #include <string>
 
 using namespace std;
@@ -41,6 +42,8 @@ public:
    *   - cannot start with a digit.
    */
   static bool isValid(const string &s);
+
+  friend ostream &operator<<(ostream &os, const Symbol &symbol);
 
 private:
   const string name_;
