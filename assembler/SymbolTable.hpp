@@ -1,6 +1,8 @@
 #pragma once
 #include "Symbol.hpp"
+#include <initializer_list>
 #include <unordered_map>
+#include <utility>
 
 using namespace std;
 
@@ -10,7 +12,15 @@ using namespace std;
  */
 class SymbolTable {
 public:
+  /**
+   * Default constructor
+   */
   SymbolTable();
+
+  /**
+   * Initializer-list constructor
+   */
+  SymbolTable(std::initializer_list<std::pair<Symbol, int>>);
 
   /**
    * Add symbol-address entry to the table
