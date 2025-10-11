@@ -1,6 +1,7 @@
 #pragma once
 #include "Symbol.hpp"
 #include <initializer_list>
+#include <ostream>
 #include <unordered_map>
 #include <utility>
 
@@ -36,6 +37,11 @@ public:
    * Returns the address associated with the symbol.
    */
   int getAddress(const Symbol &symbol) const;
+
+  /**
+   * Prints the symbol table to the output stream.
+   */
+  friend ostream &operator<<(ostream &os, const SymbolTable &symbol_table);
 
 private:
   unordered_map<Symbol, int> symbol_table_;

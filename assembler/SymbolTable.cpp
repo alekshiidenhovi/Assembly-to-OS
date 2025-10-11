@@ -1,6 +1,7 @@
 #include "SymbolTable.hpp"
 #include "Symbol.hpp"
 #include <initializer_list>
+#include <ostream>
 #include <unordered_map>
 #include <utility>
 
@@ -25,4 +26,12 @@ bool SymbolTable::contains(const Symbol &symbol) const {
 
 int SymbolTable::getAddress(const Symbol &symbol) const {
   return symbol_table_.at(symbol);
+}
+
+ostream &operator<<(ostream &os, const SymbolTable &symbol_table) {
+  os << "Symbol table:\n";
+  for (const auto &[symbol, address] : symbol_table.symbol_table_) {
+    os << "[" << symbol << "]" << " -> " << address << "\n";
+  }
+  return os;
 }
