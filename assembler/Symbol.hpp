@@ -43,7 +43,7 @@ public:
   static bool isValid(const string &s);
 
 private:
-  string name_;
+  const string name_;
 };
 
 namespace std {
