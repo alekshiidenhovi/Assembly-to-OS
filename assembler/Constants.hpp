@@ -5,27 +5,27 @@ using namespace std;
 /**
  * Number of reserved registers in the Hack CPU architecture
  */
-constexpr int NUM_REGISTERS = 16;
+inline constexpr int NUM_REGISTERS = 16;
 
 /**
  * Number of bits in a Hack RAM address
  */
-constexpr int ADDRESS_LENGTH = 15;
+inline constexpr int ADDRESS_LENGTH = 15;
 
 /**
  * Maximum value for a Hack RAM address
  */
-constexpr int MAX_ADDRESS = (1 << ADDRESS_LENGTH) - 1;
+inline constexpr int MAX_ADDRESS = (1 << ADDRESS_LENGTH) - 1;
 
 /**
  * File extension for input Hack assembly files
  */
-constexpr string ASSEMBLY_FILE_EXTENSION = ".asm";
+inline constexpr string ASSEMBLY_FILE_EXTENSION = ".asm";
 
 /**
  * File extension for output Hack binary files
  */
-constexpr string HACK_FILE_EXTENSION = ".hack";
+inline constexpr string HACK_FILE_EXTENSION = ".hack";
 
 /**
  * Hack instruction type
