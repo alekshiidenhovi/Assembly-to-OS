@@ -31,9 +31,9 @@ inline constexpr std::string_view kHackFileExtension = ".hack";
  * Hack instruction type
  */
 enum class InstructionType {
-  A_INSTRUCTION, ///< Address instruction, @xxx
-  C_INSTRUCTION, ///< Compute instruction, dest=comp;jump
-  L_INSTRUCTION, ///< Label instruction, (xxx)
+  A_INSTRUCTION,  ///< Address instruction, @xxx
+  C_INSTRUCTION,  ///< Compute instruction, dest=comp;jump
+  L_INSTRUCTION,  ///< Label instruction, (xxx)
 };
 
-} // namespace hack_assembler
+}  // namespace hack_assembler

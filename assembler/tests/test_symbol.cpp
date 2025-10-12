@@ -1,8 +1,10 @@
-#include "Symbol.hpp"
 #include <gtest/gtest.h>
+
 #include <stdexcept>
 #include <string>
 #include <vector>
+
+#include "Symbol.hpp"
 
 TEST(SymbolTest, ValidSymbols) {
   const std::vector<std::string> valid_symbol_names = {
@@ -22,7 +24,7 @@ TEST(SymbolTest, InvalidSymbols) {
       "0cannotstartwithdigit", "no spaces allowed", "noexclamations!",
       "noquestionamarks?"};
 
-  for (const auto &name : invalid_symbol_names) {
+  for (const auto& name : invalid_symbol_names) {
     EXPECT_THROW((Symbol(name)), std::invalid_argument)
         << "The Symbol constructor did not throw an error for invalid name: \'"
         << name << "'.";

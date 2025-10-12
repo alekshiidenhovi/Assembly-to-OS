@@ -4,31 +4,31 @@
 #include <string>
 
 class Symbol {
-public:
+ public:
   /**
    * Single argument constructor
    */
-  explicit Symbol(const std::string &name);
+  explicit Symbol(const std::string& name);
 
   /**
    * String conversion operator
    */
-  operator const std::string &() const noexcept;
+  operator const std::string&() const noexcept;
 
   /**
    * String conversion method
    */
-  const std::string &str() const noexcept;
+  const std::string& str() const noexcept;
 
   /**
    * Symbol equality operator
    */
-  bool operator==(const Symbol &other) const noexcept;
+  bool operator==(const Symbol& other) const noexcept;
 
   /**
    * Symbol inequality operator
    */
-  bool operator!=(const Symbol &other) const noexcept;
+  bool operator!=(const Symbol& other) const noexcept;
 
   /**
    * Symbol validation method. Returns true if the symbol adheres to Hack
@@ -39,18 +39,19 @@ public:
    * signs, and colon.
    *   - cannot start with a digit.
    */
-  static bool isValid(const std::string &s);
+  static bool isValid(const std::string& s);
 
-  friend std::ostream &operator<<(std::ostream &os, const Symbol &symbol);
+  friend std::ostream& operator<<(std::ostream& os, const Symbol& symbol);
 
-private:
+ private:
   const std::string name_;
 };
 
 namespace std {
-template <> struct hash<Symbol> {
-  size_t operator()(const Symbol &s) const noexcept {
+template <>
+struct hash<Symbol> {
+  size_t operator()(const Symbol& s) const noexcept {
     return hash<string>()(s.str());
   }
 };
-} // namespace std
+}  // namespace std

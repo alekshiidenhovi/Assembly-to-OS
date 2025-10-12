@@ -1,8 +1,9 @@
-#include "SymbolTable.hpp"
 #include <gtest/gtest.h>
 
+#include "SymbolTable.hpp"
+
 class SymbolTableTest : public testing::Test {
-protected:
+ protected:
   SymbolTableTest()
       : existing_symbol(Symbol("FirstSymbol1")),
         non_existing_symbol(Symbol("NonExistingSymbol")),

@@ -1,26 +1,27 @@
 #pragma once
-#include "Symbol.hpp"
 #include <string>
+
+#include "Symbol.hpp"
 /**
  * Provides services for translating symbolic Hack mnemonics into respective
  * binary codes.
  */
 class Code {
-public:
+ public:
   /**
    * Returns the binary code of dest mnemonic
    */
-  std::string &dest(Symbol &symbol) const;
+  std::string& dest(Symbol& symbol) const;
 
   /**
    * Returns the binary code of comp mnemonic
    */
-  std::string &comp(Symbol &symbol) const;
+  std::string& comp(Symbol& symbol) const;
 
   /**
    * Returns the binary code of jump mnemonic
    */
-  std::string &jump(Symbol &symbol) const;
+  std::string& jump(Symbol& symbol) const;
 
-private:
+ private:
 };

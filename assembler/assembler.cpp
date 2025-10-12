@@ -1,5 +1,3 @@
-#include "Parser.hpp"
-#include "SymbolTable.hpp"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -7,7 +5,10 @@
 #include <utility>
 #include <vector>
 
-int main(int argc, char *argv[]) {
+#include "Parser.hpp"
+#include "SymbolTable.hpp"
+
+int main(int argc, char* argv[]) {
   if (argc < 2) {
     std::cerr << "Incorrect CLI arguments! Usage: " << argv[0] << " <filename>"
               << std::endl;
@@ -35,7 +36,7 @@ int main(int argc, char *argv[]) {
       {Symbol("ARG"), 2},         {Symbol("THIS"), 3},
       {Symbol("THAT"), 4},        {Symbol("SCREEN"), 16384},
       {Symbol("KEYBOARD"), 24576}};
-  for (auto &[symbol, address] : predefinedSymbols) {
+  for (auto& [symbol, address] : predefinedSymbols) {
     symbolTable.addEntry(symbol, address);
   }
   for (int registerNumber = 0;
