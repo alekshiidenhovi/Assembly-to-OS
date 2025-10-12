@@ -1,8 +1,6 @@
 #include "SymbolTable.hpp"
 #include <gtest/gtest.h>
 
-using namespace std;
-
 class SymbolTableTest : public testing::Test {
 protected:
   SymbolTableTest()
@@ -32,7 +30,7 @@ TEST_F(SymbolTableTest, GettingAddress) {
 }
 
 TEST_F(SymbolTableTest, Insertion) {
-  const string symbol_name = "NEWSYMBOL";
+  const std::string symbol_name = "NEWSYMBOL";
   const int address = 100;
   const Symbol new_symbol(symbol_name);
   EXPECT_FALSE(symbol_table_.contains(new_symbol))

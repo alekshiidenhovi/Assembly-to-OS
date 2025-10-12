@@ -1,31 +1,31 @@
-#include <string>
+#include <string_view>
 
-using namespace std;
+namespace hack_assembler {
 
 /**
  * Number of reserved registers in the Hack CPU architecture
  */
-inline constexpr int NUM_REGISTERS = 16;
+inline constexpr int kCpuNumRegisters = 16;
 
 /**
  * Number of bits in a Hack RAM address
  */
-inline constexpr int ADDRESS_LENGTH = 15;
+inline constexpr int kRamAddressLength = 15;
 
 /**
  * Maximum value for a Hack RAM address
  */
-inline constexpr int MAX_ADDRESS = (1 << ADDRESS_LENGTH) - 1;
+inline constexpr int kMaxRamAddress = (1 << kRamAddressLength) - 1;
 
 /**
  * File extension for input Hack assembly files
  */
-inline constexpr string ASSEMBLY_FILE_EXTENSION = ".asm";
+inline constexpr std::string_view kAssemblyFileExtension = ".asm";
 
 /**
  * File extension for output Hack binary files
  */
-inline constexpr string HACK_FILE_EXTENSION = ".hack";
+inline constexpr std::string_view kHackFileExtension = ".hack";
 
 /**
  * Hack instruction type
@@ -35,3 +35,5 @@ enum class InstructionType {
   C_INSTRUCTION, ///< Compute instruction, dest=comp;jump
   L_INSTRUCTION, ///< Label instruction, (xxx)
 };
+
+} // namespace hack_assembler

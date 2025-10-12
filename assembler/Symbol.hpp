@@ -3,24 +3,22 @@
 #include <ostream>
 #include <string>
 
-using namespace std;
-
 class Symbol {
 public:
   /**
    * Single argument constructor
    */
-  explicit Symbol(const string &name);
+  explicit Symbol(const std::string &name);
 
   /**
    * String conversion operator
    */
-  operator const string &() const noexcept;
+  operator const std::string &() const noexcept;
 
   /**
    * String conversion method
    */
-  const string &str() const noexcept;
+  const std::string &str() const noexcept;
 
   /**
    * Symbol equality operator
@@ -41,12 +39,12 @@ public:
    * signs, and colon.
    *   - cannot start with a digit.
    */
-  static bool isValid(const string &s);
+  static bool isValid(const std::string &s);
 
-  friend ostream &operator<<(ostream &os, const Symbol &symbol);
+  friend std::ostream &operator<<(std::ostream &os, const Symbol &symbol);
 
 private:
-  const string name_;
+  const std::string name_;
 };
 
 namespace std {

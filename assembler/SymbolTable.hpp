@@ -5,8 +5,6 @@
 #include <unordered_map>
 #include <utility>
 
-using namespace std;
-
 /**
  * Creates a symbol table, inittalized with predefined values such as register
  * names.
@@ -41,8 +39,9 @@ public:
   /**
    * Prints the symbol table to the output stream.
    */
-  friend ostream &operator<<(ostream &os, const SymbolTable &symbol_table);
+  friend std::ostream &operator<<(std::ostream &os,
+                                  const SymbolTable &symbol_table);
 
 private:
-  unordered_map<Symbol, int> symbol_table_;
+  std::unordered_map<Symbol, int> symbol_table_;
 };

@@ -5,8 +5,6 @@
 #include <unordered_map>
 #include <utility>
 
-using namespace std;
-
 SymbolTable::SymbolTable() : symbol_table_() {}
 
 SymbolTable::SymbolTable(
@@ -28,7 +26,7 @@ int SymbolTable::getAddress(const Symbol &symbol) const {
   return symbol_table_.at(symbol);
 }
 
-ostream &operator<<(ostream &os, const SymbolTable &symbol_table) {
+std::ostream &operator<<(std::ostream &os, const SymbolTable &symbol_table) {
   os << "Symbol table:\n";
   for (const auto &[symbol, address] : symbol_table.symbol_table_) {
     os << "[" << symbol << "]" << " -> " << address << "\n";

@@ -4,17 +4,15 @@
 #include <stdexcept>
 #include <string>
 
-using namespace std;
-
-Symbol::Symbol(const string &name) : name_(name) {
+Symbol::Symbol(const std::string &name) : name_(name) {
   if (!isValid(name_)) {
-    throw invalid_argument("Invalid Hack symbol: " + name_);
+    throw std::invalid_argument("Invalid Hack symbol: " + name_);
   }
 }
 
-Symbol::operator const string &() const noexcept { return name_; }
+Symbol::operator const std::string &() const noexcept { return name_; }
 
-const string &Symbol::str() const noexcept { return name_; }
+const std::string &Symbol::str() const noexcept { return name_; }
 
 bool Symbol::operator==(const Symbol &other) const noexcept {
   return name_ == other.name_;
@@ -24,11 +22,11 @@ bool Symbol::operator!=(const Symbol &other) const noexcept {
   return !(*this == other);
 }
 
-bool Symbol::isValid(const string &s) {
-  static const regex pattern(R"(^[A-Za-z_\.\$\:][A-Za-z0-9_\.\$\:]*$)");
+bool Symbol::isValid(const std::string &s) {
+  static const std::regex pattern(R"(^[A-Za-z_\.\$\:][A-Za-z0-9_\.\$\:]*$)");
   return regex_match(s, pattern);
 }
 
-ostream &operator<<(ostream &os, const Symbol &symbol) {
+std::ostream &operator<<(std::ostream &os, const Symbol &symbol) {
   return os << symbol.str();
 }

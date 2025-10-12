@@ -1,8 +1,7 @@
 #include "Constants.hpp"
+#include "Symbol.hpp"
 #include <fstream>
 #include <optional>
-#include <string>
-using namespace std;
 
 /**
  * Opens the input file / stream and gets ready to parse it
@@ -12,7 +11,7 @@ public:
   /*
    * Constructor class
    */
-  explicit Parser(ifstream &src_file);
+  explicit Parser(std::ifstream &src_file);
 
   /**
    * Checks whether there are more lines in the input.
@@ -37,7 +36,7 @@ public:
    *
    * Should be called only with A_INSTRUCTIONs or L_INSTRUCTIONs.
    */
-  string &symbol() const;
+  Symbol &symbol() const;
 
   /**
    * Returns the symbolic dest part of the current C_INSTRUCTION (8
@@ -45,7 +44,7 @@ public:
    *
    * Should be called only with C_INSTRUCTIONs.
    */
-  string &dest() const;
+  Symbol &dest() const;
 
   /**
    * Returns the symbolic comp part of the current C_INSTRUCTION (28
@@ -53,16 +52,16 @@ public:
    *
    * Should be called only with C_INSTRUCTIONs.
    */
-  string &comp() const;
+  Symbol &comp() const;
   /**
    * Returns the symbolic jump part of the current C_INSTRUCTION (8
    * possibilities)
    *
    * Should be called only with C_INSTRUCTIONs.
    */
-  string &jump() const;
+  Symbol &jump() const;
 
 private:
-  optional<InstructionType> currentInstruction;
-  ifstream &src_file;
+  std::optional<hack_assembler::InstructionType> current_instruction_type_;
+  std::ifstream &src_file;
 };

@@ -4,10 +4,8 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 TEST(SymbolTest, ValidSymbols) {
-  const vector<string> valid_symbol_names = {
+  const std::vector<std::string> valid_symbol_names = {
       "onlyletters",          "includesd1t1ts",    "underscores_allowed",
       "so_are_dollar_signs$", "ANDCAPITALLETTERS", "as:well:as:colons",
   };
@@ -20,7 +18,7 @@ TEST(SymbolTest, ValidSymbols) {
 }
 
 TEST(SymbolTest, InvalidSymbols) {
-  const vector<string> invalid_symbol_names = {
+  const std::vector<std::string> invalid_symbol_names = {
       "0cannotstartwithdigit", "no spaces allowed", "noexclamations!",
       "noquestionamarks?"};
 
