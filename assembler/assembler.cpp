@@ -2,8 +2,6 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <utility>
-#include <vector>
 
 #include "Constants.hpp"
 #include "Parser.hpp"
@@ -35,15 +33,11 @@ int main(int argc, char* argv[]) {
   }
 
   // Initialize the symbol table
-  auto symbolTable = SymbolTable{};
-  const std::vector<std::pair<Symbol, int>> predefinedSymbols = {
-      {Symbol("SP"), 0},          {Symbol("LCL"), 1},
-      {Symbol("ARG"), 2},         {Symbol("THIS"), 3},
-      {Symbol("THAT"), 4},        {Symbol("SCREEN"), 16384},
-      {Symbol("KEYBOARD"), 24576}};
-  for (const auto& [symbol, address] : predefinedSymbols) {
-    symbolTable.addEntry(symbol, address);
-  }
+  auto symbolTable =
+      SymbolTable{{Symbol("SP"), 0},          {Symbol("LCL"), 1},
+                  {Symbol("ARG"), 2},         {Symbol("THIS"), 3},
+                  {Symbol("THAT"), 4},        {Symbol("SCREEN"), 16384},
+                  {Symbol("KEYBOARD"), 24576}};
   for (int registerNumber = 0;
        registerNumber < hack_assembler::kCpuNumRegisters; registerNumber++) {
     symbolTable.addEntry(Symbol("R" + std::to_string(registerNumber)),
