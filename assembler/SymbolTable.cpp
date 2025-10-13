@@ -7,6 +7,8 @@
 
 #include "Symbol.hpp"
 
+namespace hack_assembler {
+
 SymbolTable::SymbolTable() : symbol_table_() {}
 
 SymbolTable::SymbolTable(
@@ -35,3 +37,5 @@ std::ostream& operator<<(std::ostream& os, const SymbolTable& symbol_table) {
   }
   return os;
 }
+
+}  // namespace hack_assembler

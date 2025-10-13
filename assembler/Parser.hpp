@@ -4,6 +4,8 @@
 #include "Constants.hpp"
 #include "Symbol.hpp"
 
+namespace hack_assembler {
+
 /**
  * Opens the input file / stream and gets ready to parse it
  */
@@ -66,3 +68,4 @@ class Parser {
   std::optional<hack_assembler::InstructionType> current_instruction_type_;
   std::ifstream& src_file;
 };
+}  // namespace hack_assembler

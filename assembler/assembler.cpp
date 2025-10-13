@@ -34,21 +34,25 @@ int main(int argc, char* argv[]) {
 
   // Initialize the symbol table
   auto symbolTable =
-      SymbolTable{{Symbol("SP"), 0},          {Symbol("LCL"), 1},
-                  {Symbol("ARG"), 2},         {Symbol("THIS"), 3},
-                  {Symbol("THAT"), 4},        {Symbol("SCREEN"), 16384},
-                  {Symbol("KEYBOARD"), 24576}};
+      hack_assembler::SymbolTable{{hack_assembler::Symbol("SP"), 0},
+                                  {hack_assembler::Symbol("LCL"), 1},
+                                  {hack_assembler::Symbol("ARG"), 2},
+                                  {hack_assembler::Symbol("THIS"), 3},
+                                  {hack_assembler::Symbol("THAT"), 4},
+                                  {hack_assembler::Symbol("SCREEN"), 16384},
+                                  {hack_assembler::Symbol("KEYBOARD"), 24576}};
   for (int registerNumber = 0;
        registerNumber < hack_assembler::kCpuNumRegisters; registerNumber++) {
-    symbolTable.addEntry(Symbol("R" + std::to_string(registerNumber)),
-                         registerNumber);
+    symbolTable.addEntry(
+        hack_assembler::Symbol("R" + std::to_string(registerNumber)),
+        registerNumber);
   }
 
   int variable_idx = hack_assembler::kCpuNumRegisters;
 
   // First pass: Complete the symbol table
   int line_number = 0;
-  Parser parser{src_file};
+  hack_assembler::Parser parser{src_file};
   while (parser.hasMoreLines()) {
     parser.advance();
   }

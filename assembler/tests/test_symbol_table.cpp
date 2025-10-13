@@ -5,13 +5,13 @@
 class SymbolTableTest : public testing::Test {
  protected:
   SymbolTableTest()
-      : existing_symbol(Symbol("FirstSymbol1")),
-        non_existing_symbol(Symbol("NonExistingSymbol")),
+      : existing_symbol(hack_assembler::Symbol("FirstSymbol1")),
+        non_existing_symbol(hack_assembler::Symbol("NonExistingSymbol")),
         symbol_table_({{existing_symbol, 10}}) {}
 
-  const Symbol existing_symbol;
-  const Symbol non_existing_symbol;
-  SymbolTable symbol_table_;
+  const hack_assembler::Symbol existing_symbol;
+  const hack_assembler::Symbol non_existing_symbol;
+  hack_assembler::SymbolTable symbol_table_;
 };
 
 TEST_F(SymbolTableTest, Contains) {
@@ -33,7 +33,7 @@ TEST_F(SymbolTableTest, GettingAddress) {
 TEST_F(SymbolTableTest, Insertion) {
   const std::string symbol_name = "NEWSYMBOL";
   const int address = 100;
-  const Symbol new_symbol(symbol_name);
+  const hack_assembler::Symbol new_symbol(symbol_name);
   EXPECT_FALSE(symbol_table_.contains(new_symbol))
       << "Symbol table contains values that it was not initialized with "
          "(inserted value '"

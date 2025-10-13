@@ -5,7 +5,7 @@
 #include <utility>
 
 #include "Symbol.hpp"
-
+namespace hack_assembler {
 /**
  * Creates a symbol table, inittalized with predefined values such as register
  * names.
@@ -46,3 +46,4 @@ class SymbolTable {
  private:
   std::unordered_map<Symbol, int> symbol_table_;
 };
+}  // namespace hack_assembler

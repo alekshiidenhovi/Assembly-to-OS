@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include <string>
 
+namespace hack_assembler {
+
 Symbol::Symbol(const std::string& name) : name_(name) {
   if (!isValid(name_)) {
     throw std::invalid_argument("Invalid Hack symbol: " + name_);
@@ -31,3 +33,5 @@ bool Symbol::isValid(const std::string& s) {
 std::ostream& operator<<(std::ostream& os, const Symbol& symbol) {
   return os << symbol.str();
 }
+
+}  // namespace hack_assembler

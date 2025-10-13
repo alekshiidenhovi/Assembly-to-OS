@@ -2,6 +2,9 @@
 #include <string>
 
 #include "Symbol.hpp"
+
+namespace hack_assembler {
+
 /**
  * Provides services for translating symbolic Hack mnemonics into respective
  * binary codes.
@@ -25,3 +28,5 @@ class Code {
 
  private:
 };
+
+}  // namespace hack_assembler

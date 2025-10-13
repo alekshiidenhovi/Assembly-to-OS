@@ -3,6 +3,7 @@
 #include <ostream>
 #include <string>
 
+namespace hack_assembler {
 class Symbol {
  public:
   /**
@@ -46,11 +47,12 @@ class Symbol {
  private:
   const std::string name_;
 };
+}  // namespace hack_assembler
 
 namespace std {
 template <>
-struct hash<Symbol> {
-  size_t operator()(const Symbol& s) const noexcept {
+struct hash<hack_assembler::Symbol> {
+  size_t operator()(const hack_assembler::Symbol& s) const noexcept {
     return hash<string>()(s.str());
   }
 };
