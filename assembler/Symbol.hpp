@@ -11,27 +11,22 @@ class Symbol {
   /**
    * Single argument constructor
    */
-  explicit Symbol(std::string name) : name_(std::move(name)) {
-    if (!isValid(name_)) {
-      throw std::invalid_argument("Invalid Hack symbol: " + name_);
+  explicit Symbol(std::string value) : value_(std::move(value)) {
+    if (!isValid(value_)) {
+      throw std::invalid_argument("Invalid Hack symbol: " + value_);
     }
   }
 
   /**
-   * String conversion operator
-   */
-  operator const std::string&() const noexcept { return name_; }
-
-  /**
    * String conversion method
    */
-  const std::string& str() const noexcept { return name_; }
+  const std::string& getValue() const noexcept { return value_; }
 
   /**
    * Symbol equality operator
    */
   bool operator==(const Symbol& other) const noexcept {
-    return name_ == other.name_;
+    return value_ == other.value_;
   }
 
   /**
@@ -55,11 +50,11 @@ class Symbol {
     return regex_match(s, pattern);
   }
   friend std::ostream& operator<<(std::ostream& os, const Symbol& symbol) {
-    return os << symbol.str();
+    return os << symbol.getValue();
   }
 
  private:
-  const std::string name_;
+  const std::string value_;
 };
 }  // namespace hack_assembler
 
@@ -67,7 +62,7 @@ namespace std {
 template <>
 struct hash<hack_assembler::Symbol> {
   size_t operator()(const hack_assembler::Symbol& s) const noexcept {
-    return hash<string>()(s.str());
+    return hash<string>()(s.getValue());
   }
 };
 }  // namespace std

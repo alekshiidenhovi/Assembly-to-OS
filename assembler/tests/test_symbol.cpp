@@ -37,7 +37,7 @@ TEST(SymbolTest, Equality) {
   const hack_assembler::Symbol symbol2("R0");
   EXPECT_EQ(symbol1, symbol2)
       << "Symbols constructed with equal strings should be equal. Symbol1 '"
-      << symbol1.str() << "' != Symbol2 '" << symbol2.str() << "'.";
+      << symbol1.getValue() << "' != Symbol2 '" << symbol2.getValue() << "'.";
 }
 
 TEST(SymbolTest, Inequality) {
@@ -46,5 +46,5 @@ TEST(SymbolTest, Inequality) {
   EXPECT_NE(symbol1, symbol2)
       << "Symbols constructed with different strings should not be equal. "
          "Symbol1 '"
-      << symbol1.str() << "' != Symbol2 '" << symbol2.str() << "'.";
+      << symbol1.getValue() << "' != Symbol2 '" << symbol2.getValue() << "'.";
 }
