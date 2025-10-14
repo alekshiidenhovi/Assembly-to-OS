@@ -19,7 +19,6 @@ FetchContent_MakeAvailable(googletest)
 # Main library
 add_library(AssemblyLib
     Parser.cpp
-    Symbol.cpp
     SymbolTable.cpp
 )
 target_include_directories(AssemblyLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
