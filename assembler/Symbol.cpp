@@ -4,10 +4,11 @@
 #include <regex>
 #include <stdexcept>
 #include <string>
+#include <utility>
 
 namespace hack_assembler {
 
-Symbol::Symbol(const std::string& name) : name_(name) {
+Symbol::Symbol(std::string name) : name_(std::move(name)) {
   if (!isValid(name_)) {
     throw std::invalid_argument("Invalid Hack symbol: " + name_);
   }

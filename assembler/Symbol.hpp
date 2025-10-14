@@ -9,7 +9,7 @@ class Symbol {
   /**
    * Single argument constructor
    */
-  explicit Symbol(const std::string& name);
+  explicit Symbol(std::string name);
 
   /**
    * String conversion operator
