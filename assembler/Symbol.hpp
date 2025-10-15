@@ -18,7 +18,7 @@ class Symbol {
   }
 
   /**
-   * String conversion method
+   * Value getter method
    */
   const std::string& getValue() const noexcept { return value_; }
 
