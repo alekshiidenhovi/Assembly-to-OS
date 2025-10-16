@@ -6,6 +6,10 @@
 #include <utility>
 
 namespace hack_assembler {
+/**
+ * A Hack symbol class. Encapsulates a symbol string that adheres to Hack symbol
+ * rules.
+ */
 class Symbol {
  public:
   /**
