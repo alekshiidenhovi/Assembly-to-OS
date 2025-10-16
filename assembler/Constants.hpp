@@ -19,6 +19,16 @@ inline constexpr int kRamAddressLength = 15;
 inline constexpr int kMaxRamAddress = (1 << kRamAddressLength) - 1;
 
 /**
+ * Maximum value for a Hack constant
+ */
+inline constexpr int kMaxConstant = 32767;
+
+/**
+ * Minimum value for a Hack constant
+ */
+inline constexpr int kMinConstant = 0;
+
+/**
  * File extension for input Hack assembly files
  */
 inline constexpr std::string_view kAssemblyFileExtension = ".asm";
