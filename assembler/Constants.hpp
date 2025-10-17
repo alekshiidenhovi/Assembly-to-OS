@@ -1,5 +1,5 @@
 #pragma once
-#include <string_view>
+#include <string>
 
 namespace hack_assembler {
 
@@ -31,12 +31,34 @@ inline constexpr int kMinConstant = 0;
 /**
  * File extension for input Hack assembly files
  */
-inline constexpr std::string_view kAssemblyFileExtension = ".asm";
+inline constexpr std::string kAssemblyFileExtension = ".asm";
 
 /**
  * File extension for output Hack binary files
  */
-inline constexpr std::string_view kHackFileExtension = ".hack";
+inline constexpr std::string kHackFileExtension = ".hack";
+
+/**
+ * String characters that indicate a comment in Hack assembly
+ */
+inline constexpr std::string kCommentIndicators = "//";
+
+/**
+ * String characters indicating a null mnemonic in Hack assembly
+ */
+inline constexpr std::string kNullMnemonic = "null";
+
+/**
+ * String character separating the dest mnenomic from the comp mnenomic in Hack
+ * assembly
+ */
+inline constexpr std::string kDestSeparator = "=";
+
+/**
+ * String character separating the jump mnenomic from the comp mnenomic in Hack
+ * assembly
+ */
+inline constexpr std::string kJumpSeparator = ";";
 
 /**
  * Hack instruction type
