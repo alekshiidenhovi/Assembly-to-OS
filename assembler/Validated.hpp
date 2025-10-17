@@ -1,5 +1,6 @@
 #pragma once
 #include <ostream>
+#include <string>
 
 namespace hack_assembler {
 
@@ -23,7 +24,7 @@ class Validated {
     return os << static_cast<const Derived&>(s).getValue();
   }
 
-  static bool isValid(const T& value) { return Derived::isValid(value); }
+  static bool isValid(const std::string s) { return Derived::isValid(s); }
 
  private:
   // The following lines prevent misusing the class by calling from nonrecursive

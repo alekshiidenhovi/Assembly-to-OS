@@ -1,6 +1,7 @@
 #include "Constant.hpp"
 
 #include "Constants.hpp"
+
 namespace hack_assembler {
 
 bool Constant::isValid(const std::string& s) {

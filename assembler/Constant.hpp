@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
 
+#include "Validated.hpp"
+
 namespace hack_assembler {
 
 /**
  * A Hack constant class. Encapsulates a 16-bit integer constant,
  */
-class Constant {
+class Constant : public Validated<Constant, short> {
  public:
   /**
    * Single argument constructor
@@ -18,23 +20,9 @@ class Constant {
   }
 
   /**
-   * Value getter method
+   * Return the value of the constant value
    */
-  short getValue() const { return value_; }
-
-  /**
-   * Constant equality operator
-   */
-  bool operator==(const Constant& other) const noexcept {
-    return value_ == other.value_;
-  }
-
-  /**
-   * Constant inequality operator
-   */
-  bool operator!=(const Constant& other) const noexcept {
-    return !(*this == other);
-  }
+  const short& getValue() const noexcept { return value_; }
 
   /**
    * Constant validation method. Returns true if the constant adheres to Hack
