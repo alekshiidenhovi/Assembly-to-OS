@@ -1,48 +1,57 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
+#include <unordered_set>
+#include <utility>
 
-#include "Binary.hpp"
-#include "Mnemonic.hpp"
+#include "Validated.hpp"
 
 namespace hack_assembler {
 
 /**
- * A destination mnemonic, corresponding to ALU operation instructions,
- * supported by the Hack platform.
+ * A dest mnemonic, defining where to store the ALU computation result.
  */
-class DestMnemonic : public Mnemonic<DestBinary> {
+class DestMnemonic : public Validated<DestMnemonic, std::string> {
  public:
   /**
-   * Factory creation method. Returns a DestMnemonic object
+   * Constructs a dest mnemonic from a string
    */
-  static DestMnemonic create(const std::string& value) {
-    if (!isValid(value, staticCodeTable())) {
+  explicit DestMnemonic(std::string value) : value_(std::move(value)) {
+    if (!isValid(value_)) {
       throw std::invalid_argument("Invalid Hack dest mnemonic: " + value);
     }
-    return DestMnemonic(value);
+  }
+
+  /**
+   * Return the value of the dest mnemonic
+   */
+  const std::string& getValue() const noexcept { return value_; }
+
+  /**
+   * Dest mnemonic validation method. Returns true if the dest mnemonic adheres
+   * to Hack assembler rules.
+   *
+   * A dest mnemonic:
+   *   - can be of 28 specified combinations of characters, any other string is
+   * invalid.
+   */
+  static bool isValid(const std::string& s) {
+    static const std::unordered_set<std::string> valid_dests = {
+        "null", "M", "D", "DM", "A", "AM", "AD", "ADM"};
+    return valid_dests.contains(s);
   }
 
  private:
-  /**
-   * Private, single argument constructor
-   */
-  explicit DestMnemonic(const std::string& value) : Mnemonic(value) {}
-
-  /**
-   * Static mnemonic code table, lazily initialized
-   */
-  static const std::unordered_map<std::string, DestBinary>& staticCodeTable();
-
- protected:
-  /**
-   * Comp mnemonic code table
-   */
-  const std::unordered_map<std::string, DestBinary>& codeTable()
-      const override {
-    return staticCodeTable();
-  }
+  const std::string value_;
 };
 
 }  // namespace hack_assembler
+
+namespace std {
+template <>
+struct hash<hack_assembler::DestMnemonic> {
+  size_t operator()(const hack_assembler::DestMnemonic& s) const noexcept {
+    return hash<string>()(s.getValue());
+  }
+};
+}  // namespace std

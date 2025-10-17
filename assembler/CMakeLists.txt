@@ -19,9 +19,7 @@ FetchContent_MakeAvailable(googletest)
 # Main library
 add_library(AssemblyLib
     Constant.cpp
-    CompMnemonic.cpp
-    DestMnemonic.cpp
-    JumpMnemonic.cpp
+    Code.cpp
     Parser.cpp
     SymbolTable.cpp
 )

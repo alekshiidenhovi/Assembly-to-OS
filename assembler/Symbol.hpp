@@ -1,19 +1,20 @@
 #pragma once
 #include <functional>
-#include <ostream>
 #include <regex>
 #include <string>
 #include <utility>
+
+#include "Validated.hpp"
 
 namespace hack_assembler {
 /**
  * A Hack symbol class. Encapsulates a symbol string that adheres to Hack symbol
  * rules.
  */
-class Symbol {
+class Symbol : public Validated<Symbol, std::string> {
  public:
   /**
-   * Single argument constructor
+   * Constructs a symbol from a string
    */
   explicit Symbol(std::string value) : value_(std::move(value)) {
     if (!isValid(value_)) {
@@ -22,23 +23,9 @@ class Symbol {
   }
 
   /**
-   * Value getter method
+   * Return the value of the symbol
    */
   const std::string& getValue() const noexcept { return value_; }
-
-  /**
-   * Symbol equality operator
-   */
-  bool operator==(const Symbol& other) const noexcept {
-    return value_ == other.value_;
-  }
-
-  /**
-   * Symbol inequality operator
-   */
-  bool operator!=(const Symbol& other) const noexcept {
-    return !(*this == other);
-  }
 
   /**
    * Symbol validation method. Returns true if the symbol adheres to Hack
@@ -52,9 +39,6 @@ class Symbol {
   static bool isValid(const std::string& s) {
     static const std::regex pattern(R"(^[A-Za-z_\.\$\:][A-Za-z0-9_\.\$\:]*$)");
     return regex_match(s, pattern);
-  }
-  friend std::ostream& operator<<(std::ostream& os, const Symbol& symbol) {
-    return os << symbol.getValue();
   }
 
  private:

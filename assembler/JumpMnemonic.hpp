@@ -1,48 +1,58 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
+#include <unordered_set>
+#include <utility>
 
-#include "Binary.hpp"
-#include "Mnemonic.hpp"
+#include "Validated.hpp"
 
 namespace hack_assembler {
 
 /**
- * A jump mnemonic, corresponding to ALU operation instructions,
- * supported by the Hack platform.
+ * A jump mnemonic, specifying whether to jump to a different instruction based
+ * on the Hack ALU output.
  */
-class JumpMnemonic : public Mnemonic<JumpBinary> {
+class JumpMnemonic : public Validated<JumpMnemonic, std::string> {
  public:
   /**
-   * Factory creation method. Returns a JumpMnemonic object
+   * Constructs a jump mnemonic from a string
    */
-  static JumpMnemonic create(const std::string& value) {
-    if (!isValid(value, staticCodeTable())) {
+  explicit JumpMnemonic(std::string value) : value_(std::move(value)) {
+    if (!isValid(value_)) {
       throw std::invalid_argument("Invalid Hack jump mnemonic: " + value);
     }
-    return JumpMnemonic(value);
+  }
+
+  /**
+   * Return the value of the jump mnemonic
+   */
+  const std::string& getValue() const noexcept { return value_; }
+
+  /**
+   * Jump mnemonic validation method. Returns true if the jump mnemonic adheres
+   * to Hack assembler rules.
+   *
+   * A jump mnemonic:
+   *   - can be of 8 specified combinations of characters, any other string is
+   * invalid.
+   */
+  static bool isValid(const std::string& s) {
+    static const std::unordered_set<std::string> valid_jumps = {
+        "null", "JGT", "JEQ", "JGE", "JLT", "JNE", "JLE", "JMP"};
+    return valid_jumps.contains(s);
   }
 
  private:
-  /**
-   * Private, single argument constructor
-   */
-  explicit JumpMnemonic(const std::string& value) : Mnemonic(value) {}
-
-  /**
-   * Static mnemonic code table, lazily initialized
-   */
-  static const std::unordered_map<std::string, JumpBinary>& staticCodeTable();
-
- protected:
-  /**
-   * Comp mnemonic code table
-   */
-  const std::unordered_map<std::string, JumpBinary>& codeTable()
-      const override {
-    return staticCodeTable();
-  }
+  const std::string value_;
 };
 
 }  // namespace hack_assembler
+
+namespace std {
+template <>
+struct hash<hack_assembler::JumpMnemonic> {
+  size_t operator()(const hack_assembler::JumpMnemonic& s) const noexcept {
+    return hash<string>()(s.getValue());
+  }
+};
+}  // namespace std
