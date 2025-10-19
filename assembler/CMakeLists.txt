@@ -20,6 +20,7 @@ FetchContent_MakeAvailable(googletest)
 add_library(AssemblyLib
     Constant.cpp
     Code.cpp
+    FileUtils.cpp
     Parser.cpp
     SymbolTable.cpp
 )
@@ -30,12 +31,14 @@ target_link_libraries(Assembler PRIVATE AssemblyLib)
 
 enable_testing()
 
+add_executable(test_file_utils tests/test_file_utils.cpp)
 add_executable(test_constant tests/test_constant.cpp)
 add_executable(test_binary tests/test_binary.cpp)
 add_executable(test_mnemonic tests/test_mnemonic.cpp)
 add_executable(test_symbol_table tests/test_symbol_table.cpp)
 add_executable(test_symbol tests/test_symbol.cpp)
 
+target_link_libraries(test_file_utils PRIVATE AssemblyLib GTest::gtest_main)
 target_link_libraries(test_constant PRIVATE AssemblyLib GTest::gtest_main)
 target_link_libraries(test_binary PRIVATE AssemblyLib GTest::gtest_main)
 target_link_libraries(test_mnemonic PRIVATE AssemblyLib GTest::gtest_main)
@@ -43,6 +46,7 @@ target_link_libraries(test_symbol_table PRIVATE AssemblyLib GTest::gtest_main)
 target_link_libraries(test_symbol PRIVATE AssemblyLib GTest::gtest_main)
 
 include(GoogleTest)
+gtest_discover_tests(test_file_utils)
 gtest_discover_tests(test_constant)
 gtest_discover_tests(test_binary)
 gtest_discover_tests(test_mnemonic)
