@@ -19,7 +19,7 @@ class CompMnemonic : public Validated<CompMnemonic, std::string> {
    */
   explicit CompMnemonic(std::string value) : value_(std::move(value)) {
     if (!isValid(value_)) {
-      throw std::invalid_argument("Invalid Hack comp mnemonic: " + value);
+      throw std::invalid_argument("Invalid Hack comp mnemonic: " + value_);
     }
   }
 

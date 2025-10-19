@@ -18,7 +18,7 @@ class DestMnemonic : public Validated<DestMnemonic, std::string> {
    */
   explicit DestMnemonic(std::string value) : value_(std::move(value)) {
     if (!isValid(value_)) {
-      throw std::invalid_argument("Invalid Hack dest mnemonic: " + value);
+      throw std::invalid_argument("Invalid Hack dest mnemonic: " + value_);
     }
   }
 

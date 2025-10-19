@@ -19,7 +19,7 @@ class JumpMnemonic : public Validated<JumpMnemonic, std::string> {
    */
   explicit JumpMnemonic(std::string value) : value_(std::move(value)) {
     if (!isValid(value_)) {
-      throw std::invalid_argument("Invalid Hack jump mnemonic: " + value);
+      throw std::invalid_argument("Invalid Hack jump mnemonic: " + value_);
     }
   }
 
