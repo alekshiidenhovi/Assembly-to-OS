@@ -32,7 +32,7 @@ TEST_F(SymbolTableTest, GettingAddress) {
 
 TEST_F(SymbolTableTest, Insertion) {
   const std::string symbol_name = "NEWSYMBOL";
-  const int address = 100;
+  const short address = 100;
   const hack_assembler::Symbol new_symbol(symbol_name);
   EXPECT_FALSE(symbol_table_.contains(new_symbol))
       << "Symbol table contains values that it was not initialized with "

@@ -20,12 +20,12 @@ class SymbolTable {
   /**
    * Initializer-list constructor
    */
-  SymbolTable(std::initializer_list<std::pair<Symbol, int>>);
+  SymbolTable(std::initializer_list<std::pair<Symbol, short>>);
 
   /**
    * Add symbol-address entry to the table
    */
-  void addEntry(const Symbol& symbol, int address);
+  void addEntry(const Symbol& symbol, short address);
 
   /**
    * Checks whether the symbol table includes the argument symbol.
@@ -35,7 +35,7 @@ class SymbolTable {
   /**
    * Returns the address associated with the symbol.
    */
-  int getAddress(const Symbol& symbol) const;
+  short getAddress(const Symbol& symbol) const;
 
   /**
    * Prints the symbol table to the output stream.
@@ -44,6 +44,6 @@ class SymbolTable {
                                   const SymbolTable& symbol_table);
 
  private:
-  std::unordered_map<Symbol, int> symbol_table_;
+  std::unordered_map<Symbol, short> symbol_table_;
 };
 }  // namespace hack_assembler
