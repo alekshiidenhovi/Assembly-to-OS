@@ -47,35 +47,11 @@ void Assembler::second_pass() {
                 << parser_.getCurrentLineNumber() << std::endl;
       continue;
     }
+
     if (*instruction_type == InstructionType::L_INSTRUCTION) {
       continue;
-    } else if (*instruction_type == InstructionType::A_INSTRUCTION) {
-      auto address_symbol = parser_.getAddressSymbol();
-      if (std::holds_alternative<Constant>(address_symbol)) {
-        auto constant = std::get<Constant>(address_symbol);
-        auto a_instruction_binary_string =
-            utils::decimalTo16Bits(constant.getValue());
-        out_stream_ << a_instruction_binary_string;
-      } else if (std::holds_alternative<Symbol>(address_symbol)) {
-        auto symbol = std::get<Symbol>(address_symbol);
-        if (symbol_table_.contains(symbol)) {
-          auto symbol_address = symbol_table_.getAddress(symbol);
-          auto a_instruction_binary_string =
-              utils::decimalTo16Bits(symbol_address);
-          out_stream_ << a_instruction_binary_string;
-        } else {
-          auto symbol_address = next_symbol_table_index_;
-          auto a_instruction_binary_string =
-              utils::decimalTo16Bits(symbol_address);
 
-          symbol_table_.addEntry(symbol, symbol_address);
-          next_symbol_table_index_++;
-          out_stream_ << a_instruction_binary_string;
-        }
-      } else {
-        throw std::runtime_error("Invalid address");
-      }
-    } else if (*instruction_type == InstructionType::C_INSTRUCTION) {
+    } else if (*instruction_type == InstructionType::A_INSTRUCTION) {
       auto dest = parser_.getDestMnemonic();
       auto comp = parser_.getCompMnemonic();
       auto jump = parser_.getJumpMnemonic();
@@ -87,8 +63,42 @@ void Assembler::second_pass() {
       auto c_instruction_binary_string = "111" + dest_binary.getValue() +
                                          comp_binary.getValue() +
                                          jump_binary.getValue();
-
       out_stream_ << c_instruction_binary_string;
+
+    } else if (*instruction_type == InstructionType::C_INSTRUCTION) {
+      auto address_symbol = parser_.getAddressSymbol();
+
+      if (std::holds_alternative<Constant>(address_symbol)) {
+        auto constant = std::get<Constant>(address_symbol);
+        auto a_instruction_binary_string =
+            utils::decimalTo16Bits(constant.getValue());
+        out_stream_ << a_instruction_binary_string;
+
+      } else if (std::holds_alternative<Symbol>(address_symbol)) {
+        auto symbol = std::get<Symbol>(address_symbol);
+
+        if (symbol_table_.contains(symbol)) {
+          auto symbol_address = symbol_table_.getAddress(symbol);
+          auto a_instruction_binary_string =
+              utils::decimalTo16Bits(symbol_address);
+          out_stream_ << a_instruction_binary_string;
+
+        } else {
+          auto symbol_address = next_symbol_table_index_;
+          auto a_instruction_binary_string =
+              utils::decimalTo16Bits(symbol_address);
+
+          symbol_table_.addEntry(symbol, symbol_address);
+          next_symbol_table_index_++;
+          out_stream_ << a_instruction_binary_string;
+        }
+
+      } else {
+        throw std::runtime_error("Invalid A-instruction address");
+      }
+
+    } else {
+      throw std::runtime_error("Invalid instruction type");
     }
   }
 }
