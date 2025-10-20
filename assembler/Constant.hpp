@@ -13,7 +13,7 @@ class Constant : public Validated<Constant, short> {
   /**
    * Single argument constructor
    */
-  explicit Constant(std::string value) : value_(std::stoi(value)) {
+  explicit Constant(const std::string& value) : value_(std::stoi(value)) {
     if (!isValid(value)) {
       throw std::invalid_argument("Invalid Hack constant: " + value);
     }
