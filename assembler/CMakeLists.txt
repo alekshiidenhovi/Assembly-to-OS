@@ -17,28 +17,30 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 # Main library
-add_library(AssemblyLib
+add_library(HackAssembler
+    Assembler.cpp
     Constant.cpp
     Code.cpp
     FileUtils.cpp
     Parser.cpp
     SymbolTable.cpp
 )
-target_include_directories(AssemblyLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(HackAssembler PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_executable(Assembler assembler.cpp)
-target_link_libraries(Assembler PRIVATE AssemblyLib)
+add_executable(AssemblerProg main.cpp)
+target_link_libraries(AssemblerProg PRIVATE HackAssembler)
 
 enable_testing()
 include(GoogleTest)
 function(add_hack_test test_name)
   add_executable(${test_name} tests/${test_name}.cpp)
-  target_link_libraries(${test_name} PRIVATE AssemblyLib GTest::gtest_main)
+  target_link_libraries(${test_name} PRIVATE HackAssembler GTest::gtest_main)
   gtest_discover_tests(${test_name})
 endfunction()
 
 set(TESTS
   test_file_utils
+  test_parser
   test_utils
   test_constant
   test_binary
@@ -50,4 +52,3 @@ set(TESTS
 foreach(test IN LISTS TESTS)
   add_hack_test(${test})
 endforeach()
-
