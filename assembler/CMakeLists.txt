@@ -39,6 +39,7 @@ function(add_hack_test test_name)
 endfunction()
 
 set(TESTS
+  test_assembler
   test_file_utils
   test_parser
   test_utils
