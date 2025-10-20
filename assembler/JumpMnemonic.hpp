@@ -4,6 +4,7 @@
 #include <unordered_set>
 #include <utility>
 
+#include "Constants.hpp"
 #include "Validated.hpp"
 
 namespace hack_assembler {
@@ -38,7 +39,7 @@ class JumpMnemonic : public Validated<JumpMnemonic, std::string> {
    */
   static bool isValid(const std::string& s) {
     static const std::unordered_set<std::string> valid_jumps = {
-        "null", "JGT", "JEQ", "JGE", "JLT", "JNE", "JLE", "JMP"};
+        kNullMnemonic, "JGT", "JEQ", "JGE", "JLT", "JNE", "JLE", "JMP"};
     return valid_jumps.contains(s);
   }
 

@@ -4,6 +4,7 @@
 #include <unordered_set>
 #include <utility>
 
+#include "Constants.hpp"
 #include "Validated.hpp"
 
 namespace hack_assembler {
@@ -37,7 +38,7 @@ class DestMnemonic : public Validated<DestMnemonic, std::string> {
    */
   static bool isValid(const std::string& s) {
     static const std::unordered_set<std::string> valid_dests = {
-        "null", "M", "D", "DM", "A", "AM", "AD", "ADM"};
+        kNullMnemonic, "M", "D", "DM", "A", "AM", "AD", "ADM"};
     return valid_dests.contains(s);
   }
 

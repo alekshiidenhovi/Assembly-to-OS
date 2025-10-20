@@ -3,6 +3,7 @@
 #include <unordered_map>
 
 #include "CompMnemonic.hpp"
+#include "Constants.hpp"
 #include "DestMnemonic.hpp"
 #include "JumpMnemonic.hpp"
 
@@ -32,7 +33,7 @@ jumpTable() {
   static const std::unordered_map<hack_assembler::JumpMnemonic,
                                   hack_assembler::JumpBinary>
       table = {
-          {hack_assembler::JumpMnemonic("null"),
+          {hack_assembler::JumpMnemonic(hack_assembler::kNullMnemonic),
            hack_assembler::JumpBinary("000")},  // no jump
           {hack_assembler::JumpMnemonic("JGT"),
            hack_assembler::JumpBinary("001")},  // if comp > 0 jump
@@ -76,7 +77,7 @@ destTable() {
   static const std::unordered_map<hack_assembler::DestMnemonic,
                                   hack_assembler::DestBinary>
       table = {
-          {hack_assembler::DestMnemonic("null"),
+          {hack_assembler::DestMnemonic(hack_assembler::kNullMnemonic),
            hack_assembler::DestBinary("000")},  // value is not stored
           {hack_assembler::DestMnemonic("M"),
            hack_assembler::DestBinary("001")},  // RAM[A]
@@ -168,7 +169,9 @@ compTable() {
 
 }  // namespace
 
-namespace hack_assembler::code {
+namespace hack_assembler {
+
+namespace code {
 
 JumpBinary getJumpBinary(const JumpMnemonic& jump) {
   return jumpTable().at(jump);
@@ -182,4 +185,6 @@ CompBinary getCompBinary(const CompMnemonic& comp) {
   return compTable().at(comp);
 }
 
-}  // namespace hack_assembler::code
+}  // namespace code
+
+}  // namespace hack_assembler

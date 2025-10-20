@@ -47,9 +47,11 @@ TEST(ParserTest, ValidCInstruction1) {
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::C_INSTRUCTION);
 
-  EXPECT_EQ(parser.getDestMnemonic(), hack_assembler::DestMnemonic("null"));
+  EXPECT_EQ(parser.getDestMnemonic(),
+            hack_assembler::DestMnemonic(hack_assembler::kNullMnemonic));
   EXPECT_EQ(parser.getCompMnemonic(), hack_assembler::CompMnemonic("D"));
-  EXPECT_EQ(parser.getJumpMnemonic(), hack_assembler::JumpMnemonic("null"));
+  EXPECT_EQ(parser.getJumpMnemonic(),
+            hack_assembler::JumpMnemonic(hack_assembler::kNullMnemonic));
 }
 
 TEST(ParserTest, ValidCInstruction2) {
@@ -71,7 +73,8 @@ TEST(ParserTest, ValidCInstruction2) {
 
   EXPECT_EQ(parser.getDestMnemonic(), hack_assembler::DestMnemonic("M"));
   EXPECT_EQ(parser.getCompMnemonic(), hack_assembler::CompMnemonic("1"));
-  EXPECT_EQ(parser.getJumpMnemonic(), hack_assembler::JumpMnemonic("null"));
+  EXPECT_EQ(parser.getJumpMnemonic(),
+            hack_assembler::JumpMnemonic(hack_assembler::kNullMnemonic));
 }
 
 TEST(ParserTest, ValidCInstruction3) {
@@ -91,7 +94,8 @@ TEST(ParserTest, ValidCInstruction3) {
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::C_INSTRUCTION);
 
-  EXPECT_EQ(parser.getDestMnemonic(), hack_assembler::DestMnemonic("null"));
+  EXPECT_EQ(parser.getDestMnemonic(),
+            hack_assembler::DestMnemonic(hack_assembler::kNullMnemonic));
   EXPECT_EQ(parser.getCompMnemonic(), hack_assembler::CompMnemonic("0"));
   EXPECT_EQ(parser.getJumpMnemonic(), hack_assembler::JumpMnemonic("JMP"));
 }
@@ -203,7 +207,8 @@ TEST(ParserTest, ValidASMProgram) {
             hack_assembler::InstructionType::C_INSTRUCTION);
   EXPECT_EQ(parser.getDestMnemonic(), hack_assembler::DestMnemonic("D"));
   EXPECT_EQ(parser.getCompMnemonic(), hack_assembler::CompMnemonic("A"));
-  EXPECT_EQ(parser.getJumpMnemonic(), hack_assembler::JumpMnemonic("null"));
+  EXPECT_EQ(parser.getJumpMnemonic(),
+            hack_assembler::JumpMnemonic(hack_assembler::kNullMnemonic));
 
   parser.advance();
 
@@ -226,7 +231,8 @@ TEST(ParserTest, ValidASMProgram) {
             hack_assembler::InstructionType::C_INSTRUCTION);
   EXPECT_EQ(parser.getDestMnemonic(), hack_assembler::DestMnemonic("M"));
   EXPECT_EQ(parser.getCompMnemonic(), hack_assembler::CompMnemonic("D"));
-  EXPECT_EQ(parser.getJumpMnemonic(), hack_assembler::JumpMnemonic("null"));
+  EXPECT_EQ(parser.getJumpMnemonic(),
+            hack_assembler::JumpMnemonic(hack_assembler::kNullMnemonic));
 
   parser.advance();
 
@@ -254,7 +260,8 @@ TEST(ParserTest, ValidASMProgram) {
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::C_INSTRUCTION);
-  EXPECT_EQ(parser.getDestMnemonic(), hack_assembler::DestMnemonic("null"));
+  EXPECT_EQ(parser.getDestMnemonic(),
+            hack_assembler::DestMnemonic(hack_assembler::kNullMnemonic));
   EXPECT_EQ((parser.getCompMnemonic()), hack_assembler::CompMnemonic("0"));
   EXPECT_EQ((parser.getJumpMnemonic()), hack_assembler::JumpMnemonic("JMP"));
 }

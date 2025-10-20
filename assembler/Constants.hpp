@@ -46,7 +46,7 @@ inline constexpr std::string kCommentIndicators = "//";
 /**
  * String characters indicating a null mnemonic in Hack assembly
  */
-inline constexpr std::string kNullMnemonic = "null";
+inline constexpr std::string kNullMnemonic = "";
 
 /**
  * String character separating the dest mnenomic from the comp mnenomic in Hack
