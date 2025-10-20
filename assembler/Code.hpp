@@ -16,7 +16,7 @@ namespace hack_assembler {
  * associated with the given Mnemonic. Translation tables are defined in
  * the corresponding Code.cpp implementation file.
  */
-namespace Code {
+namespace code {
 
 /**
  * @brief Returns the binary code corresponding to a given jump mnemonic.
@@ -44,6 +44,6 @@ DestBinary getDestBinary(const DestMnemonic& dest);
  */
 CompBinary getCompBinary(const CompMnemonic& comp);
 
-};  // namespace Code
+};  // namespace code
 
 }  // namespace hack_assembler
