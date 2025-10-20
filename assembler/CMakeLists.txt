@@ -39,6 +39,7 @@ endfunction()
 
 set(TESTS
   test_file_utils
+  test_utils
   test_constant
   test_binary
   test_mnemonic
