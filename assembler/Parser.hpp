@@ -118,7 +118,7 @@ class Parser {
    * The current line number, initially 0, set to 1 after the first line is
    * parsed
    */
-  int current_line_number_ = 0;
+  int current_line_number_ = -1;
 
   /**
    * Checks whether the given line is a comment line

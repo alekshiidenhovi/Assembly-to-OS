@@ -15,7 +15,7 @@ TEST(ParserTest, Empty) {
   hack_assembler::Parser parser(input_stream);
 
   EXPECT_FALSE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
+  EXPECT_EQ(parser.getCurrentLineNumber(), -1);
   EXPECT_EQ(parser.getInstructionType(), std::nullopt);
 }
 
@@ -59,13 +59,13 @@ TEST(ParserTest, ValidCInstruction2) {
   hack_assembler::Parser parser(input_stream);
 
   ASSERT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
+  EXPECT_EQ(parser.getCurrentLineNumber(), -1);
   EXPECT_EQ(parser.getInstructionType(), std::nullopt);
 
   parser.advance();
 
   EXPECT_FALSE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 1);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
 
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
@@ -82,13 +82,13 @@ TEST(ParserTest, ValidCInstruction3) {
   hack_assembler::Parser parser(input_stream);
 
   ASSERT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
+  EXPECT_EQ(parser.getCurrentLineNumber(), -1);
   EXPECT_EQ(parser.getInstructionType(), std::nullopt);
 
   parser.advance();
 
   EXPECT_FALSE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 1);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
 
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
@@ -105,13 +105,13 @@ TEST(ParserTest, ValidAInstructionConstant) {
   hack_assembler::Parser parser(input_stream);
 
   ASSERT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
+  EXPECT_EQ(parser.getCurrentLineNumber(), -1);
   EXPECT_EQ(parser.getInstructionType(), std::nullopt);
 
   parser.advance();
 
   EXPECT_FALSE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 1);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
 
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
@@ -128,13 +128,13 @@ TEST(ParserTest, ValidAInstructionSymbol) {
   hack_assembler::Parser parser(input_stream);
 
   ASSERT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
+  EXPECT_EQ(parser.getCurrentLineNumber(), -1);
   EXPECT_EQ(parser.getInstructionType(), std::nullopt);
 
   parser.advance();
 
   EXPECT_FALSE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 1);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
 
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
@@ -151,13 +151,13 @@ TEST(ParserTest, ValidLInstruction) {
   hack_assembler::Parser parser(input_stream);
 
   ASSERT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
+  EXPECT_EQ(parser.getCurrentLineNumber(), -1);
   EXPECT_EQ(parser.getInstructionType(), std::nullopt);
 
   parser.advance();
 
   EXPECT_FALSE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
+  EXPECT_EQ(parser.getCurrentLineNumber(), -1);
 
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
@@ -183,13 +183,13 @@ TEST(ParserTest, ValidASMProgram) {
   hack_assembler::Parser parser(input_stream);
 
   EXPECT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
+  EXPECT_EQ(parser.getCurrentLineNumber(), -1);
   EXPECT_EQ(parser.getInstructionType(), std::nullopt);
 
   parser.advance();
 
   EXPECT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 1);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 0);
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::A_INSTRUCTION);
@@ -201,7 +201,7 @@ TEST(ParserTest, ValidASMProgram) {
   parser.advance();
 
   EXPECT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 2);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 1);
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::C_INSTRUCTION);
@@ -213,7 +213,7 @@ TEST(ParserTest, ValidASMProgram) {
   parser.advance();
 
   EXPECT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 3);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 2);
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::A_INSTRUCTION);
@@ -225,7 +225,7 @@ TEST(ParserTest, ValidASMProgram) {
   parser.advance();
 
   EXPECT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 4);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 3);
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::C_INSTRUCTION);
@@ -237,7 +237,7 @@ TEST(ParserTest, ValidASMProgram) {
   parser.advance();
 
   EXPECT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 4);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 3);
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::L_INSTRUCTION);
@@ -246,7 +246,7 @@ TEST(ParserTest, ValidASMProgram) {
   parser.advance();
 
   EXPECT_TRUE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 5);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 4);
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::A_INSTRUCTION);
@@ -256,7 +256,7 @@ TEST(ParserTest, ValidASMProgram) {
   parser.advance();
 
   EXPECT_FALSE(parser.hasMoreLines());
-  EXPECT_EQ(parser.getCurrentLineNumber(), 6);
+  EXPECT_EQ(parser.getCurrentLineNumber(), 5);
   ASSERT_TRUE(parser.getInstructionType().has_value());
   EXPECT_EQ(parser.getInstructionType().value(),
             hack_assembler::InstructionType::C_INSTRUCTION);

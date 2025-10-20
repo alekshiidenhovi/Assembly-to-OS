@@ -48,7 +48,7 @@ void Parser::advance() {
 void Parser::reset() {
   src_stream_.clear();
   src_stream_.seekg(0, std::ios::beg);
-  current_line_number_ = 0;
+  current_line_number_ = -1;
   current_line_ = "";
   current_instruction_type_ = std::nullopt;
 }
