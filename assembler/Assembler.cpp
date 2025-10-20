@@ -51,7 +51,7 @@ void Assembler::second_pass() {
     if (*instruction_type == InstructionType::L_INSTRUCTION) {
       continue;
 
-    } else if (*instruction_type == InstructionType::A_INSTRUCTION) {
+    } else if (*instruction_type == InstructionType::C_INSTRUCTION) {
       auto dest = parser_.getDestMnemonic();
       auto comp = parser_.getCompMnemonic();
       auto jump = parser_.getJumpMnemonic();
@@ -65,7 +65,7 @@ void Assembler::second_pass() {
                                          jump_binary.getValue();
       out_stream_ << c_instruction_binary_string;
 
-    } else if (*instruction_type == InstructionType::C_INSTRUCTION) {
+    } else if (*instruction_type == InstructionType::A_INSTRUCTION) {
       auto address_symbol = parser_.getAddressSymbol();
 
       if (std::holds_alternative<Constant>(address_symbol)) {
