@@ -18,16 +18,20 @@ FetchContent_MakeAvailable(googletest)
 
 # Main library
 add_library(HackAssembler
-    Assembler.cpp
-    Constant.cpp
-    Code.cpp
-    FileUtils.cpp
-    Parser.cpp
-    SymbolTable.cpp
+    src/Assembler.cpp
+    src/Constant.cpp
+    src/Code.cpp
+    src/FileUtils.cpp
+    src/Parser.cpp
+    src/SymbolTable.cpp
 )
-target_include_directories(HackAssembler PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_executable(AssemblerProg main.cpp)
+target_include_directories(HackAssembler 
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+add_executable(AssemblerProg src/main.cpp)
 target_link_libraries(AssemblerProg PRIVATE HackAssembler)
 
 enable_testing()
