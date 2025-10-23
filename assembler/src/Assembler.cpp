@@ -10,11 +10,10 @@
 namespace hack_assembler {
 
 void Assembler::initialize_() {
-  symbol_table_ =
-      SymbolTable{{Symbol("SP"), 0},          {Symbol("LCL"), 1},
-                  {Symbol("ARG"), 2},         {Symbol("THIS"), 3},
-                  {Symbol("THAT"), 4},        {Symbol("SCREEN"), 16384},
-                  {Symbol("KEYBOARD"), 24576}};
+  symbol_table_ = SymbolTable{{Symbol("SP"), 0},     {Symbol("LCL"), 1},
+                              {Symbol("ARG"), 2},    {Symbol("THIS"), 3},
+                              {Symbol("THAT"), 4},   {Symbol("SCREEN"), 16384},
+                              {Symbol("KBD"), 24576}};
   for (int registerNumber = 0;
        registerNumber < hack_assembler::kCpuNumRegisters; registerNumber++) {
     symbol_table_.addEntry(Symbol("R" + std::to_string(registerNumber)),
