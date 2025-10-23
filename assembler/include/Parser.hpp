@@ -25,6 +25,30 @@ class Parser {
   explicit Parser(std::istream& src_stream) : src_stream_(src_stream) {}
 
   /**
+   * Copy assignment operator
+   */
+  Parser& operator=(const Parser& other) = delete;
+
+  /**
+   * Copy constructor
+   */
+  Parser(const Parser& other) = delete;
+  /**
+   * Move assignment operator
+   */
+  Parser& operator=(Parser&& other) = delete;
+
+  /**
+   * Move constructor
+   */
+  Parser(Parser&& other) = delete;
+
+  /**
+   * Destructor class
+   */
+  ~Parser() = default;
+
+  /**
    * Checks whether there are more lines in the input.
    */
   bool hasMoreLines() const { return src_stream_.peek() != EOF; }
